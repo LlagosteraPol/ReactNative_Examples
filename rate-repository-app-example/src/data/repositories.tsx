@@ -1,5 +1,7 @@
 
-export default [
+import {RepositoryItem} from '../components/RepositoryItem'
+
+let repoItemList: Array<RepositoryItem> = [
     {
     id: "midudev.midu.dev",
     fullName: "midudev/midu.dev",
@@ -56,3 +58,5 @@ export default [
         ownerAvatarUrl: "https://avatars3.githubusercontent.com/u/13142323?v=4",
     }
 ]
+
+export default repoItemList

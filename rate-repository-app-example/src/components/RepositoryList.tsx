@@ -1,25 +1,14 @@
 import React from 'react'
-import {FlatList, View, Text} from 'react-native'
-import repositories from '../data/repositories.js'
+import {FlatList, Text} from 'react-native'
+import repositories from '../data/repositories'
+import {RepositoryItem, viewRepositoryItem} from './RepositoryItem'
 
-function printListElements(propList: any){
+function printListElements(repoList: Array<RepositoryItem>){
     return (
         <FlatList
-            data={propList}
+            data={repoList}
             ItemSeparatorComponent={() => <Text> </Text>}
-            renderItem={({item:repo}) => (
-                <View key={repo.id} style={{padding: 20, paddingBottom: 5, paddingTop: 5}}>
-                    <Text style={{fontWeight:'bold', marginBottom: 1}}>id: {repo.id}</Text>
-                    <Text>FullName: {repo.fullName}</Text>
-                    <Text>Description: {repo.description}</Text>
-                    <Text>Language: {repo.language}</Text>
-                    <Text>Forks: {repo.forksCount}</Text>
-                    <Text>Stars: {repo.stargazersCount}</Text>
-                    <Text>Rating: {repo.ratingAverage}</Text>
-                    <Text>Review: {repo.reviewCount}</Text>
-                    <Text>Avatar: {repo.ownerAvatarUrl}</Text>
-                </View>
-            )}
+            renderItem={({item:repo}) => ( viewRepositoryItem(repo))}
         />
     ); 
 }
