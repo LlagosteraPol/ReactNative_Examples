@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
     "@expo/webpack-config": "^0.17.2",
     "expo": "~47.0.12",
     "expo-status-bar": "~1.4.2",
@@ -34,6 +35,13 @@
   "private": true,
   "eslintConfig": {
     "parser": "babel-eslint",
-    "extends":["standard","standard-jsx","standard-react"]
+    "extends": [
+      "standard",
+      "standard-jsx",
+      "standard-react"
+    ]
+  },
+  "resolutions": {
+    "@types/react": "18.0.26"
   }
 }

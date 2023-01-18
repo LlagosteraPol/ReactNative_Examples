@@ -1,7 +1,8 @@
 import React from 'react'
-import {View, Text, StyleSheet} from 'react-native'
-
-
+import {View, Image, Text, StyleSheet, TextStyle, ViewStyle, ImageStyle, StyleProp,} from 'react-native'
+import theme from '../theme'
+import StyledText from './StyledText'
+import {viewRepositoryStats} from './RepositoryStats'
 //JSX object type
 /*
 const RepositoryItem = (props) => (
@@ -21,7 +22,14 @@ const RepositoryItem = (props) => (
 export default RepositoryItem
 */
 
-const styles = StyleSheet.create({
+type StyleRepoItem = {
+   container: ViewStyle,
+   strong: TextStyle,
+   language: any, //Not the best solution
+   image: ImageStyle
+}
+
+const styles = StyleSheet.create<StyleRepoItem>({
    container: {
       padding: 20,
       paddingBottom: 5, 
@@ -31,6 +39,21 @@ const styles = StyleSheet.create({
       color: '#09f',
       fontWeight: 'bold',
       marginBottom: 5
+   },
+   language: {
+      padding: 4,
+      color: theme.colors.white,
+      backgroundColor: theme.colors.primary,
+      alignSelf: 'flex-start',
+      marginTop:4,
+      marginBottom:4,
+      borderRadius: 4, // Rounded 'box'
+      overflow: 'hidden'
+   },
+   image: {
+      width: 48,
+      height: 48,
+      borderRadius: 4
    }
 })
 
@@ -46,18 +69,48 @@ export interface RepositoryItem {
    ownerAvatarUrl: string
 }
 
+const RepositoryItemHeader = (repItem:RepositoryItem) =>
+(
+   //the 'flex' serves the purpose to fit the child views inside the parent views (therefore the content doesn't exceed the parent space)
+   <View style={{ flexDirection: 'row', paddingBottom: 2 }}> 
+      <View  style = {{ paddingRight: 10}}>
+         <Image style = {styles.image} source={{uri: repItem.ownerAvatarUrl}}/>
+      </View>
+     
+      <View style = {{ flex: 1}}>
+         <StyledText  fontWeight='bold'>{repItem.fullName}</StyledText>
+         <StyledText color='secondary'>{repItem.description}</StyledText>
+         <StyledText style={styles.language}>{repItem.language}</StyledText>  
+      </View>
+   </View>
+)
+
 export function viewRepositoryItem(repItem: RepositoryItem){
-   return (
+
+   // encapsulating the elements in distinct ways: 
+   // RepositoryItemHeader = Constant
+   // viewRepositoryStats = Function
+   const RepositoryItem =  (
       <View key={repItem.id} style={styles.container}>
-         <Text style={styles.strong}>id: {repItem.id}</Text>
-         <Text>FullName: {repItem.fullName}</Text>
-         <Text>Description: {repItem.description}</Text>
-         <Text>Language: {repItem.language}</Text>
-         <Text>Forks: {repItem.forksCount}</Text>
-         <Text>Stars: {repItem.stargazersCount}</Text>
-         <Text>Rating: {repItem.ratingAverage}</Text>
-         <Text>Review: {repItem.reviewCount}</Text>
-         <Text>Avatar: {repItem.ownerAvatarUrl}</Text>
+         <RepositoryItemHeader {... repItem}/>
+         {viewRepositoryStats(repItem)}
       </View>
    )
+
+   return(
+      RepositoryItem
+   )
 }
+
+
+
+   //JSX style:
+   /*
+   return(
+      <View key={repItem.id} style={styles.container}>
+         <StyledText>Id: {repItem.id}</StyledText>
+         <StyledText>FullName: {repItem.fullName}</Text>
+         etc...
+      </View>
+   )
+   */
