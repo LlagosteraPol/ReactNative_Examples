@@ -38,8 +38,8 @@ const styles = StyleSheet.create<StyleText>({
    }
 })
 
-export default function styledText({children, color, fontSize,  fontWeight, style, align, ... restOfProps}:
-   {children?:string, color?:string, fontSize?:string,  fontWeight?:string, style?:string, align?:string, restOfProps?: number[]}){
+export default function StyledText({children, color, fontSize,  fontWeight, style, align, ... restOfProps}:
+   {children?:string, color?:string, fontSize?:string,  fontWeight?:string, style?:TextStyle[], align?:string, restOfProps?: number[]}){
    const textStyles = [
       styles.text,
       (color == 'primary' ? styles.colorPrimary:{}), //short circuit: if blue is 'false' it doesn't apply the style, otherwise it apply the style defined in 'styles'
@@ -51,7 +51,7 @@ export default function styledText({children, color, fontSize,  fontWeight, styl
    ]
    //TODO: Fix this
    return (
-      <Text style = {textStyles} {... restOfProps}>
+      <Text style = {textStyles}  {... restOfProps}>
          {children}
       </Text>
    )

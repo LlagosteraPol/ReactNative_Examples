@@ -5,6 +5,7 @@ import CSS from 'csstype';
 type Theme = {
    appBar: {
       primary: ColorValue,
+      textSecondary: ColorValue,
       textPrimary: ColorValue
    },
    colors: {
@@ -29,7 +30,8 @@ type Theme = {
 const theme: Theme = {
    appBar: {
       primary: '#24292e',
-      textPrimary: '#ffffff'
+      textSecondary: '#888',
+      textPrimary: '#fff'
    },
    colors: {
       textPrimary: '#24292e',
