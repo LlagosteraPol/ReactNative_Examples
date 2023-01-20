@@ -1,8 +1,9 @@
 import React from 'react' 
-import {Text, View} from 'react-native'
+import { View } from 'react-native'
 import RepositoryList from './RepositoryList'
 import AppBar from './AppBar'
-import {Navigate, Route, Routes} from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import LogInPage from '../pages/login'
 //Old: import {Redirect, Route, Switch} from 'react-router-native'
 //no need to use 'exact' anymore since the 'Route' is always exact
 
@@ -15,7 +16,7 @@ const Main = () => {
                 <Route path='/' element={<RepositoryList />}>
                     
                 </Route>
-                <Route path='/signin' element={<Text>Working on it</Text>}>
+                <Route path='/signin' element={<LogInPage />}>
                     
                 </Route>
                 <Route path='/' element={<Navigate to='/' />}>
