@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, Image, Text, StyleSheet, TextStyle, ViewStyle, ImageStyle, StyleProp,} from 'react-native'
+import {View, Image, Text, StyleSheet, TextStyle, ViewStyle, ImageStyle, StyleProp, Platform} from 'react-native'
 import theme from '../theme'
 import StyledText from './StyledText'
 import {viewRepositoryStats} from './RepositoryStats'
@@ -42,8 +42,11 @@ const styles = StyleSheet.create<StyleRepoItem>({
    },
    language: {
       padding: 4,
-      color: theme.colors.white,
-      backgroundColor: theme.colors.primary,
+      color: Platform.select({ //Change colors depending on the platform using the function 'Select'
+         android:'yellow',
+         default:theme.colors.white,
+      }),
+      backgroundColor: Platform.OS == 'android' ? 'red' : theme.colors.primary, //Change colors depending on the platform
       alignSelf: 'flex-start',
       marginTop:4,
       marginBottom:4,
@@ -78,7 +81,7 @@ const RepositoryItemHeader = (repItem:RepositoryItem) =>
       </View>
      
       <View style = {{ flex: 1}}>
-         <StyledText  fontWeight='bold'>{repItem.fullName}</StyledText>
+         <StyledText fontWeight='bold'>{repItem.fullName}</StyledText>
          <StyledText color='secondary'>{repItem.description}</StyledText>
          <StyledText style={styles.language}>{repItem.language}</StyledText>  
       </View>
