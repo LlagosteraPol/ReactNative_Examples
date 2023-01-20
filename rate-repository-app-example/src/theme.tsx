@@ -1,6 +1,7 @@
 
 import {ColorValue, TextStyle} from 'react-native'
-import CSS from 'csstype';
+import CSS from 'csstype'
+import {Platform} from 'react-native'
 
 type Theme = {
    appBar: {
@@ -44,7 +45,11 @@ const theme: Theme = {
       subheading: 16
    },
    fonts: {
-      main: 'System'
+      main: Platform.select({
+         ios: 'Arial',
+         android: 'Roboto',
+         default: 'System'
+      })
    },
    fontWeights: {
       normal: '400',

@@ -60,6 +60,7 @@ const AppBar = () =>{
          <ScrollView horizontal style={styles.scroll}>
             <AppBarTab to='/'>Repositories</AppBarTab>
             <AppBarTab to='/signin'>Sign In</AppBarTab>
+            <StyledText fontWeight='bold' style={[styles.text]}> Android version </StyledText>
          </ScrollView>
       </View>
    )
