@@ -39,7 +39,7 @@ const styles = StyleSheet.create<StyleText>({
 })
 
 export default function StyledText({children, color, fontSize,  fontWeight, style, align, ... restOfProps}:
-   {children?:string, color?:string, fontSize?:string,  fontWeight?:string, style?:TextStyle[], align?:string, restOfProps?: number[]}){
+   {children?:string, color?:string, fontSize?:string,  fontWeight?:string, style?:TextStyle[], align?:string, restOfProps?: {[x: string]: any}}){
    const textStyles = [
       styles.text,
       (color == 'primary' ? styles.colorPrimary:{}), //short circuit: if blue is 'false' it doesn't apply the style, otherwise it apply the style defined in 'styles'
