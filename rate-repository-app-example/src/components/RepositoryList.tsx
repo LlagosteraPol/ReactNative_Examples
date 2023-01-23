@@ -1,8 +1,8 @@
-import React from 'react'
-import {View, FlatList, Text} from 'react-native'
-import repositories from '../data/repositories'
+import React, { useEffect, useState } from 'react'
+import {FlatList, Text} from 'react-native'
 import {RepositoryItem, viewRepositoryItem} from './RepositoryItem'
-import {viewRepositoryStats} from './RepositoryStats'
+import useRepositories from '../hooks/useRepositories';
+
 
 function printListElements(repoList: Array<RepositoryItem>){
     return (
@@ -16,6 +16,8 @@ function printListElements(repoList: Array<RepositoryItem>){
 
 
 const RepositoryList = () => {
+    const{ repositories } = useRepositories()
+
     return (printListElements(repositories));
 };
 

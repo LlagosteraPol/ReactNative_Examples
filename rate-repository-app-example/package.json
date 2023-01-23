@@ -9,11 +9,14 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.4",
     "@emotion/react": "^11.10.5",
     "@expo/webpack-config": "^0.17.2",
+    "apollo-boost": "^0.4.9",
     "expo": "~47.0.12",
     "expo-status-bar": "~1.4.2",
     "formik": "^2.2.9",
+    "graphql": "^15.8.0",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-native": "0.70.5",
